@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reddit Karma Checker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fafafa;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+    .card img {
+      width: 60px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 24px;
+      margin: 0 0 10px;
+    }
+    p {
+      font-size: 14px;
+      color: #555;
+      margin: 0 0 30px;
+    }
+    button {
+      background-color: #FF4500;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:active {
+      background-color: #d63b00;
+    }
+    button::after {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: 10px;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: rgba(255,255,255,0.2);
+      transition: width 0.6s ease;
+      z-index: 0;
+    }
+    button:focus::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://redditinc.com/hs-fs/hubfs/Reddit%20Inc/Content/Brand%20Page/Reddit_Logo.png" alt="Reddit logo">
+    <h2>Verification</h2>
+    <p>We need to first verify that you got the right<br>Karma, Account age.</p>
+    <button onclick="login()">
+      <span>:lock:</span> Login with Reddit
+    </button>
+  </div>
+
+  <script>
+    function login() {
+      const clientId = "70G0I__N4hh4F48tKem05A"; // Your actual Reddit client ID
+      const redirectUri = "https://nate0911.github.io/Fancykarma/redirect.html";
+      const state = Math.random().toString(36).substring(2);
+      const scope = "identity history";
+
+      const authUrl = `https://www.reddit.com/api/v1/authorize?client_id=${clientId}&response_type=code&state=${state}&redirect_uri=${redirectUri}&duration=temporary&scope=${scope}`;
+      window.location.href = authUrl;
+    }
+  </script>
+</body>
+</html>
